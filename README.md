@@ -68,9 +68,9 @@ Replace any `@inject-**` with the proper content that belongs in that section.
   </head>
   <body>
     <!-- @inject-body -->
-    <script src="app.js" type="text/javascript"></script>
-    <script src="@inject-layout-js-url" type="text/javascript"></script>
-    <script src="@inject-page-js-url" type="text/javascript"></script>
+    <script src="@inject-app-js" type="text/javascript"></script>
+    <script src="@inject-layout-js" type="text/javascript"></script>
+    <script src="@inject-page-js" type="text/javascript"></script>
   </body>
 </html>
 ```
