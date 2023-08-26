@@ -74,3 +74,25 @@ Replace any `@inject-**` with the proper content that belongs in that section.
   </body>
 </html>
 ```
+
+# Web Page Processing
+
+1. Browser navigates to a website.
+2. Server sends an HTML file.
+3. Browser begins parsing HTML, and `window.document` emits `readystatechange` event where `readyState="loading"`.
+
+- `<script>` (inline): Browser stops parsing, executes script to completion, then continues parsing.
+- `<script>` (external): Browser stops parsing, downloads script, executes script to completion, then continues parsing.
+- `<script defer>`: Browser adds script to its download queue (background), then continues parsing.
+- `<img>, <link>, etc.`: Browser adds resource to its download queue (background), then continues parsing.
+
+4. When finished parsing, `window.document` emits `readystatechange` event where `readyState="interactive"`.
+5. Browser executes all `<script defer>` in the order they appeared in the html.
+6. After executing all `<script defer>`, `window.document` emits the `DOMContentLoaded` event.
+7. Once download queue is complete, `window.document` emits `readystatechange` where `readyState="complete"`.
+8. Browser `window` emits the `load` event.
+
+> `<script async>` is not recommended or covered as:
+>
+> - Execution time is unpredictable.
+> - Can unintentionally interrupt HTML parsing.
